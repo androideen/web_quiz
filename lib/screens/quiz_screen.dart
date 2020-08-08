@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,6 @@ import 'package:quiz/controllers/quiz_controllers.dart';
 import 'package:quiz/models/quiz.dart';
 import 'package:quiz/utils/quiz_utils.dart';
 import 'package:quiz/widgets/appbar.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 class QuizPage extends StatefulWidget {
   QuizPage({Key key}) : super(key: key);
