@@ -100,10 +100,12 @@ class QuizCardMobile extends StatefulWidget {
 class _QuizCardMobileState extends State<QuizCardMobile> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [QuestionCard(), ChoiceCard()],
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [QuestionCard(), ChoiceCard()],
+      ),
     );
   }
 }
@@ -120,7 +122,6 @@ class _QuestionCardState extends State<QuestionCard> {
 
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
       //color: AppConfig.primaryColor,
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -249,17 +250,6 @@ class _ChoiceCardState extends State<ChoiceCard> {
                 //_animationController.forward(from: 0.0);
               },
             )
-            /*FlatButton(
-              child: Icon(
-                Icons.navigate_next,
-                color: AppConfig.textColor,
-              ),
-              onPressed: () {
-                //context.watch<QuizModel>().nextQuestion();
-                //play animation
-                //_animationController.forward(from: 0.0);
-              },
-            ),*/
           ]);
     }
     return result;
@@ -267,8 +257,6 @@ class _ChoiceCardState extends State<ChoiceCard> {
 
   Widget _choicesGroup(BuildContext context, Question question, Widget result) {
     List<Widget> widgets = List<Widget>();
-
-    //next button: show when the answer is correct
 
     //choices
     if (question.randomChoices != null) {
@@ -324,14 +312,11 @@ class _ChoiceCardState extends State<ChoiceCard> {
     return Container(
         padding: const EdgeInsets.all(16.0),
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _answerGroup(context, question),
             _choicesGroup(context, question, _resultGroup(context, question)),
-
           ],
         ));
   }
