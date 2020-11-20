@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+
 import 'package:provider/provider.dart';
 import 'package:quiz/quiz/quiz_model.dart';
 import 'package:quiz/quiz/quiz_screen.dart';

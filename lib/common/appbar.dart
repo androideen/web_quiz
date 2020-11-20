@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/route_manager.dart';
 import 'package:quiz/common/app.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -17,10 +15,9 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         children: [
           //IconButton(icon: Icon(Icons.dehaze), onPressed: () { },),
-
           FlatButton(
             onPressed: () {
-              //Get.offAllNamed('/');
+
             },
             splashColor: null,
             highlightColor: null,
