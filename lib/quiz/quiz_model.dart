@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/common/app.dart';
 import 'package:quiz/common/data.dart';
 import 'package:quiz/quiz/quiz_repository.dart';
-import 'package:quiz/utils/quiz_utils.dart';
+
 
 class QuizModel with ChangeNotifier {
   QuizRepository quizRepository = QuizRepository();
@@ -42,17 +43,17 @@ class QuizModel with ChangeNotifier {
 
   void resetAnswers() {
     for (var i = 0; i < question.answer.length; i++) {
-      answers[i] = QuizUtil.answerPlaceholder;
+      answers[i] = AppConfig.answerPlaceholder;
     }
     //answers.map((e) => quizRepository.answerPlaceholder);
   }
   void resetAnswer(int index){
-    answers[index] = QuizUtil.answerPlaceholder;
+    answers[index] = AppConfig.answerPlaceholder;
   }
 
-  bool answerNotSet(int index) => answers[index].toUpperCase() == QuizUtil.answerPlaceholder;
+  bool answerNotSet(int index) => answers[index].toUpperCase() == AppConfig.answerPlaceholder;
   //compare answer with answers
   bool isCorrect() => question.answer.toUpperCase() == answersAsString();
-  String imageURL() => 'quiz/resources/${quiz.category.category}/${question.image}';
+  String imageURL() => '${AppConfig.QUIZ_RESOURCES}${quiz.category.category}/${question.image}';
 
 }

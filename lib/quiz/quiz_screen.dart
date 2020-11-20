@@ -108,4 +108,3 @@ class _QuizCardMobileState extends State<QuizCardMobile> {
     );
   }
 }
-

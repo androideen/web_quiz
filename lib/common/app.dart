@@ -15,6 +15,8 @@ class AppConfig {
   static const QUIZ_FOLDER = 'assets/quiz/';
   static const QUIZ_CATEGORY_FILE = 'quizzes.json';
   static const QUIZ_RESOURCES_FOLDER = 'assets/quiz/resources/';
+  static const QUIZ_RESOURCES = 'quiz/resources/';
+  static const String answerPlaceholder = '_';
 
   static mediaWidth(context){
     return  MediaQuery.of(context).size.width;
