@@ -1,12 +1,17 @@
 [
   {
-    "question": "What widget makes all children center aligned",
-    "image": "",
+    "question": "What widget makes its children center aligned",
+    "image": "ln.png",
     "answer": "Center"
   },
   {
     "question": "What widget builds itself based on the latest snapshot of interaction with a Future",
     "image": "",
     "answer": "FutureBuilder"
+  },
+  {
+    "question": "What widget replace FlatButton",
+    "image": "",
+    "answer": "TextButton"
   }
 ]

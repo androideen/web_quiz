@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:quiz/screens/home_screen.dart';
-import 'package:quiz/screens/quiz_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz/quiz/quiz_model.dart';
+import 'package:quiz/quiz/quiz_screen.dart';
+import 'package:quiz/quiz_category/category_screen.dart';
 
-import 'constants/app.dart';
+import 'common/app.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => QuizModel()),
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       title: AppConfig.APP_NAME,
-      initialRoute: '/',
       theme: ThemeData(
         primarySwatch: AppConfig.primaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -23,13 +26,14 @@ class MyApp extends StatelessWidget {
         textTheme: AppConfig.textTheme,
         primaryTextTheme: AppConfig.textTheme,
       ),
-      getPages: [
-        GetPage(name: '/', page: () => MyHomePage()),
-        GetPage(
-            name: '/quiz/:category',
-            page: () => QuizPage(),
-            transition: Transition.zoom),
-      ],
+      initialRoute: '/',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/': (context) => CategoryPage(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/quiz': (context) =>
+            QuizPage(category: ModalRoute.of(context).settings.arguments),
+      },
     );
   }
 }

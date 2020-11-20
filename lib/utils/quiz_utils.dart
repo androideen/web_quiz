@@ -1,10 +1,14 @@
 import 'dart:convert';
 import 'dart:math';
+
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:quiz/models/quiz.dart';
+import 'package:quiz/common/data.dart';
+
+
 
 class QuizUtil {
   static const String answerPlaceholder = '_';
+
   static const QUIZ_FOLDER = 'quiz/';
   static const QUIZ_RESOURCES_FOLDER = 'quiz/resources/';
 

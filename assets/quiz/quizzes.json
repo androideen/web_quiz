@@ -1,10 +1,6 @@
 [
   {
     "category": "flutter",
-    "description": "Flutter"
-  },
-  {
-    "category": "android",
-    "description": "Android"
+    "description": "Take Flutter Quiz!"
   }
 ]

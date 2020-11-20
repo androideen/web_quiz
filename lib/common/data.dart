@@ -1,23 +1,11 @@
-import 'package:quiz/utils/quiz_utils.dart';
 
 class Quiz {
   int score;
   Category category;
   List<Question> questions;
 
-  int get questionCount => questions.length;
+  int get questionCount => questions != null ? questions.length : 0;
 
-}
-
-class Category {
-  final String category;
-  final String description;
-
-  Category(this.category, this.description);
-
-  Category.fromJson(Map<String, dynamic> json)
-      : category = json['category'],
-        description = json['description'];
 }
 
 class Question {
@@ -33,4 +21,15 @@ class Question {
         image = json['image'],
         randomChoices = json['randomChoices'],
         answer = json['answer'];
+}
+
+class Category {
+  final String category;
+  final String description;
+
+  Category(this.category, this.description);
+
+  Category.fromJson(Map<String, dynamic> json)
+      : category = json['category'],
+        description = json['description'];
 }
