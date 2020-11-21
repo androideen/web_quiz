@@ -6,7 +6,7 @@ import 'package:quiz/common/data.dart';
 
 class CategoryService{
   Future<List<Category>> categories() async {
-    final data = await rootBundle.loadString(AppConfig.QUIZ_FOLDER + AppConfig.QUIZ_CATEGORY_FILE);
+    final data = await rootBundle.loadString(AppConfig.ASSET_QUIZ_FOLDER + AppConfig.QUIZ_CATEGORY_FILE);
 
     final List<dynamic> json = jsonDecode(data);
     List<Category> categories = List<Category>();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:quiz/common/app.dart';
 import 'package:quiz/common/data.dart';
 import 'package:provider/provider.dart';
@@ -11,45 +12,73 @@ class QuestionCard extends StatefulWidget {
   _QuestionCardState createState() => _QuestionCardState();
 }
 
-class _QuestionCardState extends State<QuestionCard> {
+class _QuestionCardState extends State<QuestionCard> with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+  Animation _animation;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1000));
+    _animation = CurvedAnimation(
+        parent: _animationController, curve: Curves.easeOutBack);
+
+    _animationController.forward();
+
+    super.initState();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var fontSize = MediaQuery.of(context).size.width > 1023 ? 36.0 : 24.0;
+    //play animation if playAnimation is triggered
+    if(context.watch<QuizModel>().playAnimation){
+      context.watch<QuizModel>().playAnimation = false;
+      _animationController.forward(from: 0.0);
+    }
 
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      //color: AppConfig.primaryColor,
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            context.watch<QuizModel>().progress,
-            style: TextStyle(color: AppConfig.primaryColor, fontSize: fontSize),
-          ),
-          context.watch<QuizModel>().question.question.isNotEmpty
-              ? Text(
-            context.watch<QuizModel>().question.question,
-            style: TextStyle(fontSize: fontSize),
-          )
-              : Container(),
-          context.watch<QuizModel>().question.question.isNotEmpty &&
-              context.watch<QuizModel>().question.image.isNotEmpty
-              ? SizedBox(
-            height: 30,
-          )
-              : Container(),
-          context.watch<QuizModel>().question.image.isNotEmpty
-              ? Container(
-              width: 300,
-              height: 200,
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Image.asset(context.watch<QuizModel>().imageURL()),
-              ))
-              : Container(),
-        ],
+    return ScaleTransition(
+      scale: _animation,
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        //color: AppConfig.primaryColor,
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              context.watch<QuizModel>().progress,
+              style: TextStyle(color: AppConfig.primaryColor, fontSize: fontSize),
+            ),
+            context.watch<QuizModel>().question.question.isNotEmpty
+                ? Text(
+              context.watch<QuizModel>().question.question,
+              style: TextStyle(fontSize: fontSize),
+            )
+                : Container(),
+            context.watch<QuizModel>().question.question.isNotEmpty &&
+                context.watch<QuizModel>().question.image.isNotEmpty
+                ? SizedBox(
+              height: 30,
+            )
+                : Container(),
+            context.watch<QuizModel>().question.image.isNotEmpty
+                ? Container(
+                width: 300,
+                height: 200,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Image.asset(context.watch<QuizModel>().imageURL()),
+                ))
+                : Container(),
+          ],
+        ),
       ),
     );
   }
@@ -60,7 +89,27 @@ class ChoiceCard extends StatefulWidget {
   _ChoiceCardState createState() => _ChoiceCardState();
 }
 
-class _ChoiceCardState extends State<ChoiceCard> {
+class _ChoiceCardState extends State<ChoiceCard> with SingleTickerProviderStateMixin{
+  AnimationController _animationController;
+  Animation _animation;
+
+  @override
+  void initState() {
+    _animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1000));
+    _animation = CurvedAnimation(
+        parent: _animationController, curve: Curves.easeOutBack);
+
+    _animationController.forward();
+
+    super.initState();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _animationController.dispose();
+  }
+
   Widget _answerGroup(BuildContext context, Question question) {
     List<Widget> widgets = List<Widget>();
 
@@ -68,7 +117,7 @@ class _ChoiceCardState extends State<ChoiceCard> {
     for (var i = 0; i < question.answer.length; i++) {
       widgets.add(SizedBox(
         width: 50,
-        child: FlatButton(
+        child: TextButton(
           onPressed: () {
             //reset disable character and replace it in answer as well
             context.read<QuizModel>().resetAnswer(i);
@@ -113,6 +162,7 @@ class _ChoiceCardState extends State<ChoiceCard> {
           ),
           TextButton(
             onPressed: () {
+              context.read<QuizModel>().index = 0;
               Navigator.pushNamedAndRemoveUntil(
                   context, CategoryPage.routeName, (route) => false);
             },
@@ -130,7 +180,7 @@ class _ChoiceCardState extends State<ChoiceCard> {
           children: [
             Text(
               "Correct!",
-              style: TextStyle(color: Colors.lime, fontSize: 24.0),
+              style: TextStyle(color: AppConfig.successColor, fontSize: 24.0),
             ),
             SizedBox(
               width: 20,
@@ -143,7 +193,12 @@ class _ChoiceCardState extends State<ChoiceCard> {
               onPressed: () {
                 context.read<QuizModel>().nextQuestion();
                 //play animation
-                //_animationController.forward(from: 0.0);
+                _animationController.forward(from: 0.0);
+                //reset animation state
+                context.read<QuizModel>().playAnimation = true;
+                /*setState(() {
+
+                });*/
               },
             )
           ]);
@@ -160,8 +215,13 @@ class _ChoiceCardState extends State<ChoiceCard> {
         String buttonValue = question.randomChoices[i];
         widgets.add(SizedBox(
           width: 50,
-          child: OutlineButton(
-            borderSide: BorderSide(color: AppConfig.textColor),
+          child: OutlinedButton(
+            style: OutlinedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+              side: BorderSide(width: 1, color: AppConfig.textColor),
+            ),
             onPressed: () {
               for (var i = 0; i < question.answer.length; i++) {
                 if (context.read<QuizModel>().answerNotSet(i)) {
@@ -205,15 +265,18 @@ class _ChoiceCardState extends State<ChoiceCard> {
   @override
   Widget build(BuildContext context) {
     final question = context.watch<QuizModel>().question;
-    return Container(
-        padding: const EdgeInsets.all(16.0),
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _answerGroup(context, question),
-            _choicesGroup(context, question, _resultGroup(context, question)),
-          ],
-        ));
+    return ScaleTransition(
+      scale: _animation,
+      child: Container(
+          padding: const EdgeInsets.all(16.0),
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _answerGroup(context, question),
+              _choicesGroup(context, question, _resultGroup(context, question)),
+            ],
+          )),
+    );
   }
 }

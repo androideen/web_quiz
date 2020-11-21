@@ -10,6 +10,7 @@ class QuizModel with ChangeNotifier {
   Question question = Question("", "", "");
   List<String> answers = [];
   int index = 0;
+  bool playAnimation = false;
 
   String get progress => "${(index + 1)} / ${quiz.questionCount}";
   bool get isLastQuestion => index == quiz.questionCount - 1;
@@ -45,7 +46,6 @@ class QuizModel with ChangeNotifier {
     for (var i = 0; i < question.answer.length; i++) {
       answers[i] = AppConfig.answerPlaceholder;
     }
-    //answers.map((e) => quizRepository.answerPlaceholder);
   }
   void resetAnswer(int index){
     answers[index] = AppConfig.answerPlaceholder;

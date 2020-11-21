@@ -66,12 +66,9 @@ class _QuizPageState extends State<QuizPage> {
   }
 }
 
-class QuizCard extends StatefulWidget {
-  @override
-  _QuizCardState createState() => _QuizCardState();
-}
 
-class _QuizCardState extends State<QuizCard> {
+
+class QuizCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -91,12 +88,8 @@ class _QuizCardState extends State<QuizCard> {
   }
 }
 
-class QuizCardMobile extends StatefulWidget {
-  @override
-  _QuizCardMobileState createState() => _QuizCardMobileState();
-}
 
-class _QuizCardMobileState extends State<QuizCardMobile> {
+class QuizCardMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -108,3 +101,5 @@ class _QuizCardMobileState extends State<QuizCardMobile> {
     );
   }
 }
+
+

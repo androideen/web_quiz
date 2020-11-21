@@ -9,7 +9,7 @@ import 'package:quiz/common/data.dart';
 class QuizService{
    Future<List<Question>> loadQuiz(String category) async {
     final data =
-    await rootBundle.loadString(AppConfig.QUIZ_RESOURCES_FOLDER + '$category.json');
+    await rootBundle.loadString(AppConfig.ASSET_QUIZ_RESOURCES_FOLDER + '$category.json');
     final List<dynamic> json = jsonDecode(data);
     List<Question> questions = [];
     for (var i = 0; i < json.length; i++) {
@@ -50,6 +50,6 @@ class QuizService{
    }
 
    String imageURL(String category, String image){
-     return 'quiz/${category}/$image';
+     return '${AppConfig.QUIZ_FOLDER}$category/$image';
    }
 }
