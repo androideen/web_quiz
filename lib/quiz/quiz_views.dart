@@ -29,8 +29,8 @@ class _QuestionCardState extends State<QuestionCard> with SingleTickerProviderSt
   }
   @override
   void dispose() {
-    super.dispose();
     _animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -106,8 +106,8 @@ class _ChoiceCardState extends State<ChoiceCard> with SingleTickerProviderStateM
   }
   @override
   void dispose() {
-    super.dispose();
     _animationController.dispose();
+    super.dispose();
   }
 
   Widget _answerGroup(BuildContext context, Question question) {
