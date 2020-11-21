@@ -74,7 +74,7 @@ class _QuestionCardState extends State<QuestionCard> with SingleTickerProviderSt
                 height: 200,
                 child: FittedBox(
                   fit: BoxFit.contain,
-                  child: Image.asset(context.watch<QuizModel>().imageURL()),
+                  child: Image.asset(context.watch<QuizModel>().question.fullImagePath),
                 ))
                 : Container(),
           ],
@@ -194,11 +194,8 @@ class _ChoiceCardState extends State<ChoiceCard> with SingleTickerProviderStateM
                 context.read<QuizModel>().nextQuestion();
                 //play animation
                 _animationController.forward(from: 0.0);
-                //reset animation state
+                //notify other widgets to play animation
                 context.read<QuizModel>().playAnimation = true;
-                /*setState(() {
-
-                });*/
               },
             )
           ]);

@@ -4,6 +4,7 @@ import 'package:quiz/common/data.dart';
 import 'package:quiz/quiz/quiz_repository.dart';
 
 
+
 class QuizModel with ChangeNotifier {
   QuizRepository quizRepository = QuizRepository();
   Quiz quiz = Quiz();
@@ -54,6 +55,5 @@ class QuizModel with ChangeNotifier {
   bool answerNotSet(int index) => answers[index].toUpperCase() == AppConfig.answerPlaceholder;
   //compare answer with answers
   bool isCorrect() => question.answer.toUpperCase() == answersAsString();
-  String imageURL() => '${AppConfig.QUIZ_RESOURCES}${quiz.category.category}/${question.image}';
 
 }

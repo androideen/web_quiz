@@ -7,7 +7,5 @@ class QuizRepository {
   Future<List<Question>> loadQuiz(String category) async {
     return quizService.loadQuiz(category);
   }
-  String imageURL(String category, String image){
-    return quizService.imageURL(category, image);
-  }
+
 }

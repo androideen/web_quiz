@@ -13,6 +13,7 @@ class Question {
   final String image;
   final String answer;
   List<String> randomChoices;
+  String fullImagePath;
 
   Question(this.question, this.image, this.answer);
 
