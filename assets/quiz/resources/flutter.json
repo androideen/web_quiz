@@ -15,7 +15,7 @@
     "answer": "TextButton"
   },
   {
-    "question": "which class learn the size of the current media",
+    "question": "Which class learn the size of the current media",
     "image": "",
     "answer": "MediaQuery"
   }

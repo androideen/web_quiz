@@ -41,6 +41,7 @@ class _QuestionCardState extends State<QuestionCard> with SingleTickerProviderSt
       context.watch<QuizModel>().playAnimation = false;
       _animationController.forward(from: 0.0);
     }
+    final question = context.watch<QuizModel>().question;
 
     return ScaleTransition(
       scale: _animation,
@@ -56,25 +57,25 @@ class _QuestionCardState extends State<QuestionCard> with SingleTickerProviderSt
               context.watch<QuizModel>().progress,
               style: TextStyle(color: AppConfig.primaryColor, fontSize: fontSize),
             ),
-            context.watch<QuizModel>().question.question.isNotEmpty
+            question.question.isNotEmpty
                 ? Text(
-              context.watch<QuizModel>().question.question,
+              question.question,
               style: TextStyle(fontSize: fontSize),
             )
                 : Container(),
-            context.watch<QuizModel>().question.question.isNotEmpty &&
-                context.watch<QuizModel>().question.image.isNotEmpty
+            question.question.isNotEmpty &&
+                question.image.isNotEmpty
                 ? SizedBox(
               height: 30,
             )
                 : Container(),
-            context.watch<QuizModel>().question.image.isNotEmpty
+            question.image.isNotEmpty
                 ? Container(
                 width: 300,
                 height: 200,
                 child: FittedBox(
                   fit: BoxFit.contain,
-                  child: Image.asset(context.watch<QuizModel>().question.fullImagePath),
+                  child: Image.asset(question.fullImagePath),
                 ))
                 : Container(),
           ],
