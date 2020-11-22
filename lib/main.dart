@@ -28,9 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => CategoryPage(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
         '/quiz': (context) =>
             QuizPage(category: ModalRoute.of(context).settings.arguments),
       },
