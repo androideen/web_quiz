@@ -1,8 +1,13 @@
 [
   {
     "question": "What widget makes its children center aligned",
-    "image": "test.png",
+    "image": "",
     "answer": "Center"
+  },
+  {
+    "question": "What property of MainAxisAlignment divides the free horizontal space evenly between, before, and after each image",
+    "image": "MainAxisAlignment.jpg",
+    "answer": "spaceEvenly"
   },
   {
     "question": "What widget builds itself based on the latest snapshot of interaction with a Future",
@@ -10,13 +15,63 @@
     "answer": "FutureBuilder"
   },
   {
-    "question": "What widget replace FlatButton",
+    "question": "Which widget can be used to achieve this layout",
+    "image": "gridview.png",
+    "answer": "GridView"
+  },
+  {
+    "question": "What widget replaces FlatButton",
     "image": "",
     "answer": "TextButton"
   },
   {
-    "question": "Which class learn the size of the current media",
+    "question": "This class is useful for more complex widgets that wish to include an animation as part of a larger build function",
+    "image": "",
+    "answer": "AnimatedBuilder"
+  },
+  {
+    "question": "Which class learns the size of the current media",
     "image": "",
     "answer": "MediaQuery"
+  },
+  {
+    "question": "This widget, from the Material library, contains related nuggets of information and can be composed from almost any widget",
+    "image": "card.png",
+    "answer": "Card"
+  },
+  {
+    "question": "Which widget displays text that uses multiple different styles",
+    "image": "",
+    "answer": "RichText"
+  },
+  {
+    "question": "A widget that positions its children relative to the edges of its box",
+    "image": "",
+    "answer": "Stack"
+  },
+  {
+    "question": "This class provides APIs for showing drawers, snack bars, and bottom sheets",
+    "image": "",
+    "answer": "Scaffold"
+  },
+  {
+    "question": "A widget that provides a canvas on which to draw during the paint phase",
+    "image": "",
+    "answer": "CustomPaint"
+  },
+  {
+    "question": "What class provides a variety of ways to draw a box",
+    "image": "box.png",
+    "answer": "BoxDecoration"
+  },
+  {
+    "question": "A widget that stretches a child of a Row, Column, or Flex so that the child fills the available space",
+    "image": "",
+    "answer": "Expanded"
+  },
+  {
+    "question": "which package provides classes and functions to interact with a SQLite database",
+    "image": "",
+    "answer": "sqflite"
   }
 ]

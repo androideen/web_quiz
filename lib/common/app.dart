@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppConfig {
-  static const String APP_NAME = 'Quiz';
-  static const String WEBSITE = 'https://tltemplates.com';
+  static const String APP_NAME = 'Flutter Quiz';
+  static const String WEBSITE = 'https://www.tldevtech.com';
 
   /*Theme*/
   static const Color primaryColor = Colors.blue;

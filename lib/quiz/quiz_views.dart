@@ -155,11 +155,11 @@ class _ChoiceCardState extends State<ChoiceCard> with SingleTickerProviderStateM
         children: [
           Text(
             "Congratulations!",
-            style: TextStyle(color: Colors.lime, fontSize: 24.0),
+            style: TextStyle(color: AppConfig.successColor, fontSize: 24.0),
           ),
           Text(
             "You've completed all questions!",
-            style: TextStyle(color: Colors.lime, fontSize: 16.0),
+            style: TextStyle(color: AppConfig.successColor, fontSize: 16.0),
           ),
           TextButton(
             onPressed: () {
@@ -169,7 +169,7 @@ class _ChoiceCardState extends State<ChoiceCard> with SingleTickerProviderStateM
             },
             child: Icon(
               Icons.navigate_before,
-              color: AppConfig.textColor,
+              color: AppConfig.primaryColor,
             ),
           )
         ],
@@ -189,7 +189,7 @@ class _ChoiceCardState extends State<ChoiceCard> with SingleTickerProviderStateM
             TextButton(
               child: Icon(
                 Icons.navigate_next,
-                color: AppConfig.textColor,
+                color: AppConfig.primaryColor,
               ),
               onPressed: () {
                 context.read<QuizModel>().nextQuestion();
